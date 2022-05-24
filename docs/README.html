@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <title>README</title>
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <link rel="stylesheet" href=".\style.css" />
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">README</h1>
+</header>
+<h1 id="bme280-with-esp32">BME280 with ESP32</h1>
+<h2 id="installing-micropython">Installing MicroPython</h2>
+<h3 id="installation-of-firmware">Installation of firmware</h3>
+<p>Download the firmware from <a
+href="https://micropython.org/download/?port=esp32">here</a> (direct
+link to download: https://micropython.org/download/esp32)</p>
+<h2 id="deploying-firmware">Deploying firmware</h2>
+<p>Install <code>esptool</code> from <a
+href="https://github.com/espressif/esptool/releases/">GitHub</a> or via
+<code>pip</code>:</p>
+<pre><code>pip install esptool</code></pre>
+<p>Connect the board to computer and erase the flash with the command
+(hold the boot button while it erase the flash):</p>
+<pre><code>esptool --port COMx erase_flash</code></pre>
+<p>Then deploy the firmware using:</p>
+<pre><code>esptool --chip esp32 --port COMx write_flash -z 0x1000 /path/to/esp32.bin</code></pre>
+<blockquote>
+<p>note: check the port that esp32 used by checking in the device
+manager should be COMx, where x is an integer</p>
+</blockquote>
+<h2 id="getting-started-with-repl">Getting Started with REPL</h2>
+<h3 id="via-serial-port">Via serial port</h3>
+<p>On Windows, install <code>TeraTerm</code> to access the prompt over
+USB-serial. <a
+href="https://osdn.net/projects/ttssh2/releases/">Download link</a></p>
+<h2 id="uploading-files-to-esp32">Uploading files to ESP32</h2>
+<h3 id="using-rshell">Using rshell</h3>
+<p>Install <code>rshell</code> via <code>pip</code>:</p>
+<pre><code>pip install rshell</code></pre>
+<p>Use <code>rshell</code> to connect to ESP32:</p>
+<pre><code>rshell -p COMx -e notepad</code></pre>
+<blockquote>
+<p>the filepath of ESP32 is /pyboard/</p>
+</blockquote>
+<p>To copy file to ESP32: (inside rshell)</p>
+<pre><code># cp /path/to/file_to_copy /pyboard/</code></pre>
+<h2 id="reference">Reference</h2>
+<ol type="1">
+<li><a
+href="https://docs.micropython.org/en/latest/esp32/quickref.html">Micropython
+Documentation</a></li>
+<li><a href="https://github.com/dhylands/rshell">rshell GitHub</a></li>
+<li><a
+href="https://randomnerdtutorials.com/micropython-bme280-esp32-esp8266/">BME280
+tutorial</a></li>
+</ol>
+</body>
+</html>
